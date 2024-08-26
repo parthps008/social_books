@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Profile</title>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <style>
+            body {
+                font-family: 'Roboto', sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f0f0f0;
+            }
+
+            .navbar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #007bff;
+                color: #ffffff;
+                padding: 15px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .navbar h1 {
+                margin: 0;
+                font-size: 1.5em;
+            }
+
+            .navbar .nav-links {
+                display: flex;
+                align-items: center;
+            }
+
+            .navbar .nav-links a {
+                color: #ffffff;
+                text-decoration: none;
+                margin: 0 15px;
+                font-size: 1.1em;
+            }
+
+            .navbar .nav-links a:hover {
+                text-decoration: underline;
+            }
+
+            .profile-details {
+                margin: 20px;
+                padding: 20px;
+                background-color: #ffffff;
+                border-radius: 5px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .profile-details h2 {
+                margin-top: 0;
+            }
+
+            .logout-btn {
+                background-color: #007bff;
+                color: #ffffff;
+                border: none;
+                padding: 10px 20px;
+                font-size: 1.1em;
+                border-radius: 5px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                transition: background-color 0.3s ease;
+            }
+
+            .logout-btn:hover {
+                background-color: #0056b3;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="navbar">
+            <h1>Profile</h1>
+            <div class="nav-links">
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'upload_books' %}">Upload Books</a>
+                <a href="{% url 'uploaded_files' %}">Uploaded Files</a>
+                <a href="{% url 'my_books' %}">My Books</a>
+            </div>
+        </div>
+
+        <div class="profile-details">
+            <h2>Profile Details</h2>
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Public Visibility:</strong> {{ user.public_visibility }}</p>
+            <p><strong>Birth Year:</strong> {{ user.birth_year }}</p>
+            <p><strong>Address:</strong> {{ user.address }}</p>
+            <p><strong>Age:</strong> {{ user.age }}</p>
+            <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+        </div>
+    </body>
+
+</html>

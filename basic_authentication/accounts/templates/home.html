@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Social Book Dashboard</title>
+        <!-- Link to your CSS file -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Social Book</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'upload_books' %}">Upload Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'my_books' %}">My Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container mt-5">
+            <h1 class="text-center">Welcome to Social Book, {{ user.username }}!</h1>
+            <p class="text-center">Manage your books, view other authors and sellers, and more!</p>
+
+            <div class="row mt-4">
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="https://img.freepik.com/free-vector/digital-transformation-abstract-concept-illustration_335657-3766.jpg?t=st=1724674789~exp=1724678389~hmac=bb070d1dbdeb2aeeb49fea3f777d21deddba87ff5e77c67f48c2815b9ab84c8b&w=740" class="card-img-top"
+                            alt="Upload Books">
+                        <div class="card-body">
+                            <h5 class="card-title">Upload Books</h5>
+                            <p class="card-text">Upload and manage your books.</p>
+                            <a href="{% url 'upload_books' %}" class="btn btn-primary">Upload Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books-illustration_23-2149341898.jpg?w=740&t=st=1724674702~exp=1724675302~hmac=da0ce595ba09c837ad167aa851c64f29eebfa95591c3316cd090cd218b12090f" class="card-img-top" alt="My Books">
+                        <div class="card-body">
+                            <h5 class="card-title">My Books</h5>
+                            <p class="card-text">View and manage your uploaded books.</p>
+                            <a href="{% url 'my_books' %}" class="btn btn-primary">View My Books</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="https://img.freepik.com/free-vector/couple-student-with-reading-book-hands_25030-39026.jpg?t=st=1724674851~exp=1724678451~hmac=ad7a1b1d10499a0b1db01cedad9b9393ad7fd26cd12909edf5f0c2388c7d9813&w=740" class="card-img-top"
+                            alt="Authors & Sellers">
+                        <div class="card-body">
+                            <h5 class="card-title">Authors & Sellers</h5>
+                            <p class="card-text">Explore other authors and sellers.</p>
+                            <a href="{% url 'authors_and_sellers' %}" class="btn btn-primary">Go to Authors &
+                                Sellers</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+
+</html>

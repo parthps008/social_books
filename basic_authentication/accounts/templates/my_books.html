@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Books</title>
+        <style>
+            .container {
+                width: 80%;
+                margin: auto;
+                padding: 20px;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            th,
+            td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+            .delete-btn {
+                color: red;
+                border: none;
+                background: none;
+                cursor: pointer;
+                font-size: 16px;
+            }
+
+            .delete-btn:hover {
+                color: darkred;
+            }
+
+            .book-image {
+                max-width: 100px;
+                max-height: 100px;
+                display: block;
+            }
+
+            .no-files {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .pdf-link {
+                display: block;
+                margin: 10px 0;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>My Books</h1>
+
+            {% if user_files %}
+            <h2>Your Uploaded Files</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Cost</th>
+                        <th>Year</th>
+                        <th>Preview</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for file in user_files %}
+                    <tr>
+                        <td>{{ file.title }}</td>
+                        <td>{{ file.cost }}</td>
+                        <td>{{ file.year_of_publication }}</td>
+                        <td>
+                            {% if file.file %}
+                            {% if file.file.url|slice:"-4:" == ".pdf" %}
+                            <a href="{{ file.file.url }}" class="pdf-link" target="_blank">View PDF</a>
+                            {% else %}
+                            <img src="{{ file.file.url }}" alt="{{ file.title }}" class="book-image">
+                            {% endif %}
+                            {% else %}
+                            No Preview Available
+                            {% endif %}
+                        </td>
+                        <td>
+                            <form action="{% url 'delete_file' file.id %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="delete-btn">🗑️</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <a href="{% url 'home' %}">Back to Home</a>
+            {% else %}
+            <p class="no-files">You have not uploaded any files yet. <a href="{% url 'upload_books' %}">Upload Books</a>
+            </p>
+            {% endif %}
+        </div>
+    </body>
+
+</html>

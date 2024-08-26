@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Upload Books</title>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <style>
+            body {
+                font-family: 'Roboto', sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f0f0f0;
+                display: flex;
+            }
+
+            .sidebar {
+                width: 250px;
+                background-color: #007bff;
+                color: #ffffff;
+                height: 100vh;
+                padding: 20px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+                box-sizing: border-box;
+            }
+
+            .sidebar h1 {
+                font-size: 1.5em;
+                margin: 0;
+                padding-bottom: 20px;
+                border-bottom: 2px solid #ffffff;
+            }
+
+            .sidebar ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .sidebar ul li {
+                margin-bottom: 15px;
+            }
+
+            .sidebar ul li a {
+                color: #ffffff;
+                text-decoration: none;
+                font-size: 1.1em;
+                display: block;
+                padding: 10px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+
+            .sidebar ul li a:hover {
+                background-color: #0056b3;
+            }
+
+            .main-content {
+                margin-left: 250px;
+                padding: 20px;
+                flex: 1;
+                box-sizing: border-box;
+            }
+
+            .main-content h1 {
+                color: #333;
+                margin-bottom: 20px;
+            }
+
+            .main-content form {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 6px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+                margin-bottom: 20px;
+            }
+
+            .main-content form button {
+                background-color: #007bff;
+                color: #ffffff;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 5px;
+                font-size: 1em;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .main-content form button:hover {
+                background-color: #0056b3;
+            }
+
+            .main-content a {
+                font-size: 1.1em;
+                color: #007bff;
+                text-decoration: none;
+                font-weight: 700;
+            }
+
+            .main-content a:hover {
+                text-decoration: underline;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="sidebar">
+            <h1>Dashboard</h1>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'upload_books' %}">Upload Books</a></li>
+                <li><a href="{% url 'uploaded_files' %}">Uploaded Files</a></li>
+                <li><a href="#" id="authors-link">Authors and Sellers</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <h1>Upload Books</h1>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Upload</button>
+            </form>
+            <a href="{% url 'uploaded_files' %}">View Uploaded Files</a>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const authorsLink = document.getElementById('authors-link');
+                const authorsList = document.getElementById('authors-list');
+
+                authorsLink.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    if (authorsList.style.display === 'none' || authorsList.style.display === '') {
+                        authorsList.style.display = 'block';
+                    } else {
+                        authorsList.style.display = 'none';
+                    }
+                });
+            });
+        </script>
+    </body>
+
+</html>
